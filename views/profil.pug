@@ -1,0 +1,41 @@
+extends /layouts/layout.pug
+block body
+    span My current avatar: 
+    - let img = user.user_avatar ? 'data:' + user.user_avatar.type + ';base64,' + user.user_avatar.data : 'https://fakeimg.pl/90x90/';
+    img(
+        src=img
+    )
+    form#uploadForm
+        input(type="file" name="avatar" required=true)
+        input(type="submit" value="Upload new avatar")
+block append scripts
+    script(type="text/javascript").
+        $('#uploadForm').submit(function (e) {
+            e.preventDefault();
+
+            let formData = new FormData(this);
+
+            $.ajax({
+                url: '/profil',
+                data: formData,
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                cache: false,
+            }).done(function (data) {
+                let json = JSON.parse(data);
+
+                if (json.success) {
+                    toastr.success('Profil updated !');
+                    
+                    setTimeout(function () {
+                        window.location.href = '/profil';
+                    }, 500);
+                } else {
+                    toastr.error('An error occured !');
+                }
+            });
+        });
+block append styles
+    style(type="text/css").
+        

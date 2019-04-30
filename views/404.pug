@@ -1,0 +1,11 @@
+extends /layouts/layout.pug
+block body
+    p Cette page n'existe pas ! Redirection en cours...
+block append scripts
+    script(type="text/javascript").
+        setTimeout(function () {
+            window.location.href = '/';
+        }, 2000);
+block append styles
+    style(type="text/css").
+        

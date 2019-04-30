@@ -1,0 +1,14 @@
+extends /layouts/layout.pug
+block body
+    div
+        a(href="/profil") Profil
+    div
+        a(href="/logout") Se déconnecter
+    div 
+        p User connected: #{user.user_firstname} #{user.user_secondname}
+block append scripts
+    script(type="text/javascript").
+
+block append styles
+    style(type="text/css").
+        

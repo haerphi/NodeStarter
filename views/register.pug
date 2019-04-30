@@ -1,0 +1,43 @@
+extends /layouts/layout.pug
+block body
+    form#registerForm
+        input(name="login" type="text" placeholder="Login" required=true)
+        input(name="password" type="password" placeholder="Password" required=true)
+        input(name="password2" type="password" placeholder="Repeat password" required=true)
+        input(name="firstname" type="text" placeholder="Firstname" required=true)
+        input(name="secondname" type="text" placeholder="secondname" required=true)
+        input(type="submit" value="Register")
+    a(href="/") Login
+block append scripts
+    script(type="text/javascript").
+        $('#registerForm').submit(function (e) {
+            e.preventDefault();
+
+            let postdata = {};
+
+            $(this).serializeArray().forEach(l => {
+                postdata[l.name] = l.value;
+            });
+
+            if (postdata.password != postdata.password2) {
+                toastr.error('Password must be identical !');
+                return;
+            }
+
+            $.post('/register', postdata, function (data) {
+                let json = JSON.parse(data);
+
+                if (json.success) {
+                    toastr.success('Register success');
+                    
+                    setTimeout(function () {
+                        window.location.href = '/';
+                    }, 500);
+                } else {
+                    toastr.error(json.message);
+                }
+            });
+        });
+block append styles
+    style(type="text/css").
+        
