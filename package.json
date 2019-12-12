@@ -31,6 +31,6 @@
 		"randomstring": "^1.1.5",
 		"rethinkdb": "^2.3.3",
 		"rethinkdbdash": "^2.3.31",
-		"sharp": "^0.22.1"
+		"sharp": "^0.23.4"
 	}
 }
