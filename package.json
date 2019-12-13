@@ -29,7 +29,7 @@
 		"path": "^0.12.7",
 		"pug": "^2.0.3",
 		"randomstring": "^1.1.5",
-		"rethinkdb": "^2.3.3",
+		"rethinkdb": "^2.4.1",
 		"rethinkdbdash": "^2.3.31",
 		"sharp": "^0.22.1"
 	}
